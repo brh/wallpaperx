@@ -9,6 +9,7 @@ import com.bhargett.wallpaper.R;
 import com.bhargett.wallpaper.util.ActivityFinisher;
 import com.bhargett.wallpaper.util.Helper;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.squareup.spoon.Spoon;
 
 import org.junit.Assert;
 import org.junit.Rule;
@@ -17,6 +18,7 @@ import androidx.test.InstrumentationRegistry;
 import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.rule.ActivityTestRule;
+import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -59,11 +61,16 @@ public class StepDefinitions {
     @Then("^Tap Nav item \'([^\"]*)\'$")
     public void tap(String key) {
         BottomNavigationItemView viewById = mActivity.findViewById(Helper.stringToId(key));
-        viewById.post(()->viewById.performClick());
+        viewById.post(viewById::performClick);
     }
 
     @Given("^Text should equal \'([^\"]*)\'")
     public void textCheck(String text) {
         onView(withId(R.id.message)).check(ViewAssertions.matches(ViewMatchers.withText(text)));
+    }
+
+    @Then("^Take Screenshot$")
+    public void takeScreenshot() throws Throwable {
+        Spoon.screenshot(mActivity, "Test");
     }
 }

@@ -4,3 +4,4 @@ Feature: Basic Test
     Given 'Home' is selected
     Then Tap Nav item 'Dashboard'
     Then Text should equal 'Dashboard'
+    Then Take Screenshot
