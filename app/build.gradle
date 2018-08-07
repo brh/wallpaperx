@@ -5,13 +5,8 @@ apply plugin: 'com.getkeepsafe.dexcount'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "28.0.1"
+    buildToolsVersion "28.0.2"
     testBuildType 'debug'
-    sourceSets {
-        main {
-            assets.srcDirs = ['assets']
-        }
-    }
 
     defaultConfig {
         applicationId "com.bhargett.wallpaper"
@@ -19,7 +14,6 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        //testApplicationId "com.bhargett.wallpaper.test.support"
         testInstrumentationRunner "com.bhargett.wallpaper.cucumber.runner.CucumberTestRunner"
     }
     compileOptions {
