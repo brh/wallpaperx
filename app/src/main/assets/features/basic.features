@@ -1,0 +1,6 @@
+Feature: Basic Test
+
+  Scenario: Debug tools are not visible in Release Configuration
+    Given 'Home' is selected
+    Then Tap 'Dashboard'
+    Then Text should equal 'Dashboard'

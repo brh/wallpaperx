@@ -1,0 +1,58 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.getkeepsafe.dexcount'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "28.0.1"
+    testBuildType 'debug'
+    sourceSets {
+        main {
+            assets.srcDirs = ['assets']
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.bhargett.wallpaper"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        //testApplicationId "com.bhargett.wallpaper.test.support"
+        testInstrumentationRunner "com.bhargett.wallpaper.cucumber.runner.CucumberTestRunner"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildTypes {
+        debug {
+            debuggable = true
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    implementation 'com.google.android.material:material:1.0.0-beta01'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    testImplementation 'junit:junit:4.12'
+
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.0-alpha4'
+
+    // Cucumber
+    androidTestImplementation 'io.cucumber:cucumber-junit:3.0.2@jar'
+    androidTestImplementation 'io.cucumber:cucumber-android:3.0.2@jar'
+    androidTestImplementation 'io.cucumber:cucumber-picocontainer:3.0.2'
+
+}
